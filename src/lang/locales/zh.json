@@ -1,0 +1,10 @@
+{
+  "chinese": "中文",
+  "english": "English",
+  "menu": {
+    "vueMircoApp": "vue微应用",
+    "list": "列表",
+    "dashboard": "仪表盘",
+    "details": "详情"
+  }
+}

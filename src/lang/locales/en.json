@@ -1,0 +1,10 @@
+{
+  "chinese": "中文",
+  "english": "English",
+  "menu": {
+    "vueMircoApp": "Vue Micro App",
+    "list": "List",
+    "dashboard": "Dashboard",
+    "details": "Details"
+  }
+}
