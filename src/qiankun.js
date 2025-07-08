@@ -1,10 +1,10 @@
 import { registerMicroApps, start } from "qiankun";
 
-export function registerQiankunApps(mode) {
+export function registerQiankunApps() {
   registerMicroApps([
     {
       name: "vueApp",
-      entry: mode === "production" ? "//big-wang007.github.io/vue-app/" : "//localhost:8081",
+      entry: "//big-wang007.github.io/vue-app/",
       container: "#container",
       activeRule: "/vue-app",
       props: {
