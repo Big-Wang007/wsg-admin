@@ -1,9 +1,11 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory /* ,createWebHistory */ } from "vue-router";
 
 const router = createRouter({
   // 这里的import.meta.env.BASE_URL取值于vite.config.js中的base属性。
   // 只有在生产环境才需要加/h5/前缀访问。
-  history: createWebHistory(import.meta.env.BASE_URL),
+  // history: createWebHistory(import.meta.env.BASE_URL),
+  // github pages为静态托管，不支持history模式
+  history: createWebHashHistory(),
   routes: [
     {
       path: "/",

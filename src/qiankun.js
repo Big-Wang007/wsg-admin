@@ -1,14 +1,14 @@
-import { registerMicroApps, start, initGlobalState } from "qiankun";
+import { registerMicroApps, start } from "qiankun";
 
-export function registerQiankunApps() {
+export function registerQiankunApps(mode) {
   registerMicroApps([
     {
       name: "vueApp",
-      entry: "//localhost:8081",
+      entry: mode === "production" ? "//big-wang007.github.io/vue-app/" : "//localhost:8081",
       container: "#container",
-      activeRule: "/wsg-admin/vue-app",
+      activeRule: "/vue-app",
       props: {
-        basePath: "/wsg-admin/vue-app",
+        basePath: "/vue-app",
       },
     },
     // {
