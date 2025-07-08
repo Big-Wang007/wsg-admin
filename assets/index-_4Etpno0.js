@@ -1,1 +1,0 @@
-import{_ as a}from"./_plugin-vue_export-helper-DlAUqK2U.js";import{a6 as o,a as r,am as e,ag as s,an as _,a9 as d}from"./index-C0PWPW2S.js";const l={};function c(f,t){const n=_;return d(),o("div",null,[r(n,null,{default:s(()=>t[0]||(t[0]=[e("antd")])),_:1,__:[0]}),t[1]||(t[1]=e(" 这里是乾坤主页面 "))])}const i=a(l,[["render",c]]);export{i as default};
