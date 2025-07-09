@@ -2,7 +2,7 @@ import { fileURLToPath, URL } from "node:url";
 
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
-// import VueDevTools from "vite-plugin-vue-devtools";
+import VueDevTools from "vite-plugin-vue-devtools";
 
 import Components from "unplugin-vue-components/vite";
 import { AntDesignVueResolver } from "unplugin-vue-components/resolvers";
@@ -24,7 +24,7 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       vue(),
-      // VueDevTools(),
+      VueDevTools(),
       Components({
         resolvers: [
           AntDesignVueResolver({
@@ -35,7 +35,8 @@ export default defineConfig(({ mode }) => {
     ],
     build: {
       outDir: "dist",
-      sourcemap: false,
+      minify: false, // 不压缩代码
+      sourcemap: true, // 生成sourcemap
       // 消除打包大小超过500kb警告
       chunkSizeWarningLimit: 2000,
       rollupOptions: {
@@ -69,10 +70,11 @@ export default defineConfig(({ mode }) => {
       headers: {
         "access-control-allow-origin": "*",
       },
+      // host: "//big-wang007.github.io",
       port: 8080,
       cors: true,
       open: true,
-      origin: "//localhost:8081",
+      // origin: "//big-wang007.github.io:8081",
       // proxy: {
       //   [env.VITE_APP_BASE_API]: {
       //     target: env.VITE_APP_SERVICE_URL,

@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory /* ,createWebHistory */ } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 
 const router = createRouter({
   // 这里的import.meta.env.BASE_URL取值于vite.config.js中的base属性。
