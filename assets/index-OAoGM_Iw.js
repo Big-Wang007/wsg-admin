@@ -1,4 +1,4 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/layout-DVsUo_oI.js","assets/vue-router-VELCurhE.js","assets/@vue-CXFRJBEB.js","assets/vue-i18n-BxOQ3a7f.js","assets/@intlify-6TXC-gFd.js","assets/plugin-vueexport-helper-1tPrXgE0.js","assets/@ant-design-C8rBI7nz.js","assets/@ctrl-i2BXpzPC.js","assets/ant-design-vue-BPBWbRYd.js","assets/@babel-BH5WFgda.js","assets/lodash-es-DgEtFnDs.js","assets/resize-observer-polyfill-C80vHMkG.js","assets/dayjs-CLeEmiia.js","assets/dom-align-C8FpptQ1.js","assets/@emotion-D9dI_Y91.js","assets/stylis-Bw1ygUgA.js","assets/vue-types-Bu_jFbQT.js","assets/qiankun-DFwBr9iv.js","assets/lodash-KqrOsjaQ.js","assets/single-spa-BhgqiMF-.js","assets/import-html-entry-DDVcqYXZ.js","assets/layout-BlahdlHd.css","assets/index--vQ1xlKW.js","assets/microApp-BJk8HPaK.js"])))=>i.map(i=>d[i]);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/layout-BbaHFy98.js","assets/vue-router-VELCurhE.js","assets/@vue-CXFRJBEB.js","assets/vue-i18n-BxOQ3a7f.js","assets/@intlify-6TXC-gFd.js","assets/plugin-vueexport-helper-1tPrXgE0.js","assets/@ant-design-C8rBI7nz.js","assets/@ctrl-i2BXpzPC.js","assets/ant-design-vue-BPBWbRYd.js","assets/@babel-BH5WFgda.js","assets/lodash-es-DgEtFnDs.js","assets/resize-observer-polyfill-C80vHMkG.js","assets/dayjs-CLeEmiia.js","assets/dom-align-C8FpptQ1.js","assets/@emotion-D9dI_Y91.js","assets/stylis-Bw1ygUgA.js","assets/vue-types-Bu_jFbQT.js","assets/qiankun-DFwBr9iv.js","assets/lodash-KqrOsjaQ.js","assets/single-spa-BhgqiMF-.js","assets/import-html-entry-DDVcqYXZ.js","assets/layout-BlahdlHd.css","assets/index--vQ1xlKW.js","assets/microApp-BJk8HPaK.js"])))=>i.map(i=>d[i]);
 import { n as nextTick, r as ref, w as watch, M as createBlock, u as unref, N as resolveComponent, O as openBlock, P as withCtx, c as createVNode, Q as createApp } from "./@vue-CXFRJBEB.js";
 import { c as createPinia } from "./pinia-CHILh0iM.js";
 import { l as localeValues, a as localeValues$1, C as ConfigProvider, B as Button, L as Layout, D as Dropdown, A as Avatar } from "./ant-design-vue-BPBWbRYd.js";
@@ -174,7 +174,7 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      component: () => __vitePreload(() => import("./layout-DVsUo_oI.js"), true ? __vite__mapDeps([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21]) : void 0),
+      component: () => __vitePreload(() => import("./layout-BbaHFy98.js"), true ? __vite__mapDeps([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21]) : void 0),
       redirect: "home",
       children: [
         {
@@ -221,4 +221,4 @@ app.use(createPinia());
 app.use(router);
 app.use(I18n);
 app.mount("#app");
-//# sourceMappingURL=index-BuFeccnG.js.map
+//# sourceMappingURL=index-OAoGM_Iw.js.map

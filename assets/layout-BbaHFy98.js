@@ -197,7 +197,7 @@ function registerQiankunApps() {
       name: "vueApp",
       entry: "//big-wang007.github.io/vue-app/",
       container: "#container",
-      activeRule: "/vue-app",
+      activeRule: (location) => location.hash.startsWith("#/vue-app"),
       props: {
         basePath: "/vue-app"
       }
@@ -256,4 +256,4 @@ const layout = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-5a9
 export {
   layout as default
 };
-//# sourceMappingURL=layout-DVsUo_oI.js.map
+//# sourceMappingURL=layout-BbaHFy98.js.map
