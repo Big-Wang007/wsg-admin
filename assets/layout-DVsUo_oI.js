@@ -217,6 +217,9 @@ function registerQiankunApps() {
       beforeMount: (app) => console.log("[qiankun] before mount", app),
       afterMount: (app) => console.log("[qiankun] after mount", app),
       beforeUnmount: (app) => console.log("[qiankun] before unmount", app)
+    },
+    errorHandler: (error) => {
+      console.error("[Qiankun] 全局错误", error);
     }
   });
 }
@@ -253,4 +256,4 @@ const layout = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-5a9
 export {
   layout as default
 };
-//# sourceMappingURL=layout-ByNc5Sox.js.map
+//# sourceMappingURL=layout-DVsUo_oI.js.map
