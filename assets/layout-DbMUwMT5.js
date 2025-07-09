@@ -199,7 +199,9 @@ function registerQiankunApps() {
       container: "#container",
       activeRule: (location) => location.hash.startsWith("#/vue-app"),
       props: {
+        // 传递basePath，注意：这里应该传递hash路由的base路径，即#号后面的部分的前缀
         basePath: "/vue-app"
+        // 注意：以斜杠开头，没有#号
       }
     }
     // {
@@ -256,4 +258,4 @@ const layout = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-5a9
 export {
   layout as default
 };
-//# sourceMappingURL=layout-BbaHFy98.js.map
+//# sourceMappingURL=layout-DbMUwMT5.js.map
