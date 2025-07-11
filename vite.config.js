@@ -3,7 +3,7 @@ import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import VueDevTools from "vite-plugin-vue-devtools";
-
+import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 import Components from "unplugin-vue-components/vite";
 import { AntDesignVueResolver } from "unplugin-vue-components/resolvers";
 
@@ -25,6 +25,10 @@ export default defineConfig(({ mode }) => {
     plugins: [
       vue(),
       VueDevTools(),
+      createSvgIconsPlugin({
+        iconDirs: [fileURLToPath(new URL("./src/utils/svgIcon/icons", import.meta.url))],
+        symbolId: "[name]",
+      }),
       Components({
         resolvers: [
           AntDesignVueResolver({

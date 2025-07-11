@@ -14,11 +14,11 @@
 
 <script setup>
 import { h, reactive, watch } from "vue";
-import { MailOutlined, AppstoreOutlined, SettingOutlined } from "@ant-design/icons-vue";
+import { HomeOutlined, MailOutlined, AppstoreOutlined, SettingOutlined } from "@ant-design/icons-vue";
 import { useRoute, useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 
-const {t} = useI18n()
+const { t } = useI18n();
 
 function getItem(label, key, icon, children, type) {
   return {
@@ -30,6 +30,7 @@ function getItem(label, key, icon, children, type) {
   };
 }
 const items = reactive([
+  getItem("首页", "home", () => h(HomeOutlined)),
   getItem("主应用", "admin", () => h(MailOutlined), [
     getItem("Option 1", "1"),
     getItem("Option 2", "2"),
@@ -50,20 +51,29 @@ const items = reactive([
 ]);
 const state = reactive({
   openKeys: ["admin", "vue-app", "react"],
-  selectedKeys: [],
+  selectedKeys: ["home"],
 });
 
 const router = useRouter();
 const handleClick = ({ keyPath }) => {
-  const [subRoutePath, route] = keyPath;
-  router.push(`/${subRoutePath}/${route}`);
+  if (keyPath.length > 1) {
+    const [subRoutePath, route] = keyPath;
+    router.push(`/${subRoutePath}/${route}`);
+  } else {
+    const [route] = keyPath;
+    router.push(`/${route}`);
+  }
 };
 
 const route = useRoute();
-watch(() => route.path, (val) => {
-  const list = val.split("/");
-  state.selectedKeys.push(list[2])
-}, {immediate: true})
+watch(
+  () => route.path,
+  val => {
+    const list = val.split("/");
+    state.selectedKeys.push(list[2]);
+  },
+  { immediate: true },
+);
 </script>
 
 <style lang="less" scoped>
