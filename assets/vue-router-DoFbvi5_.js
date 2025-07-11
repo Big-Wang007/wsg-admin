@@ -1,4 +1,4 @@
-import { s as shallowRef, d as defineComponent, u as unref, L as shallowReactive, a as reactive, i as inject, j as computed, h, p as provide, r as ref, w as watch, n as nextTick } from "./@vue-CXFRJBEB.js";
+import { s as shallowRef, d as defineComponent, u as unref, Q as shallowReactive, a as reactive, i as inject, j as computed, h, p as provide, r as ref, w as watch, n as nextTick } from "./@vue-D-mnPpXN.js";
 /*!
   * vue-router v4.5.1
   * (c) 2025 Eduardo San Martin Morote
@@ -1873,4 +1873,4 @@ export {
   createRouter as c,
   useRouter as u
 };
-//# sourceMappingURL=vue-router-VELCurhE.js.map
+//# sourceMappingURL=vue-router-DoFbvi5_.js.map

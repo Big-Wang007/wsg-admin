@@ -1,20 +1,20 @@
-import { u as useRouter, b as useRoute } from "./vue-router-VELCurhE.js";
-import { u as useI18n } from "./vue-i18n-BxOQ3a7f.js";
+import { u as useRouter, b as useRoute } from "./vue-router-DoFbvi5_.js";
+import { u as useI18n } from "./vue-i18n-Vcz8nxxl.js";
 import { _ as _export_sfc } from "./plugin-vueexport-helper-1tPrXgE0.js";
-import { A as AppstoreOutlined, M as MailOutlined, S as SettingOutlined, U as UserOutlined, G as GlobalOutlined } from "./@ant-design-C8rBI7nz.js";
-import { a as reactive, h, w as watch, R as createElementBlock, c as createVNode, O as openBlock, S as createBaseVNode, P as withCtx, u as unref, A as withModifiers, U as toDisplayString, o as onMounted, N as resolveComponent } from "./@vue-CXFRJBEB.js";
-import { M as Menu, A as Avatar, _ as __unplugin_components_1, D as Dropdown } from "./ant-design-vue-BPBWbRYd.js";
+import { A as AppstoreOutlined, H as HomeOutlined, M as MailOutlined, m as SettingOutlined, U as UserOutlined, G as GlobalOutlined } from "./@ant-design-tMLE6zg2.js";
+import { M as Menu, A as Avatar, b as __unplugin_components_1, D as Dropdown } from "./ant-design-vue-CxifP5iN.js";
+import { a as reactive, h, w as watch, W as createElementBlock, c as createVNode, U as openBlock, X as createBaseVNode, V as withCtx, u as unref, A as withModifiers, _ as toDisplayString, o as onMounted, S as resolveComponent } from "./@vue-D-mnPpXN.js";
 import { i as initGlobalState, r as registerMicroApps, s as start } from "./qiankun-DFwBr9iv.js";
 import "./@intlify-6TXC-gFd.js";
 import "./@ctrl-i2BXpzPC.js";
 import "./@babel-BH5WFgda.js";
-import "./lodash-es-DgEtFnDs.js";
+import "./lodash-es-B3klq8D0.js";
 import "./resize-observer-polyfill-C80vHMkG.js";
-import "./dayjs-CLeEmiia.js";
+import "./dayjs-LsVTM95D.js";
+import "./vue-types-Bu_jFbQT.js";
 import "./dom-align-C8FpptQ1.js";
 import "./@emotion-D9dI_Y91.js";
 import "./stylis-Bw1ygUgA.js";
-import "./vue-types-Bu_jFbQT.js";
 import "./lodash-KqrOsjaQ.js";
 import "./single-spa-BhgqiMF-.js";
 import "./import-html-entry-DDVcqYXZ.js";
@@ -33,6 +33,7 @@ const _sfc_main$2 = {
       };
     }
     const items = reactive([
+      getItem("首页", "home", () => h(HomeOutlined)),
       getItem("主应用", "admin", () => h(MailOutlined), [
         getItem("Option 1", "1"),
         getItem("Option 2", "2"),
@@ -53,18 +54,27 @@ const _sfc_main$2 = {
     ]);
     const state = reactive({
       openKeys: ["admin", "vue-app", "react"],
-      selectedKeys: []
+      selectedKeys: ["home"]
     });
     const router = useRouter();
     const handleClick = ({ keyPath }) => {
-      const [subRoutePath, route2] = keyPath;
-      router.push(`/${subRoutePath}/${route2}`);
+      if (keyPath.length > 1) {
+        const [subRoutePath, route2] = keyPath;
+        router.push(`/${subRoutePath}/${route2}`);
+      } else {
+        const [route2] = keyPath;
+        router.push(`/${route2}`);
+      }
     };
     const route = useRoute();
-    watch(() => route.path, (val) => {
-      const list = val.split("/");
-      state.selectedKeys.push(list[2]);
-    }, { immediate: true });
+    watch(
+      () => route.path,
+      (val) => {
+        const list = val.split("/");
+        state.selectedKeys.push(list[2]);
+      },
+      { immediate: true }
+    );
     return (_ctx, _cache) => {
       const _component_a_menu = Menu;
       return openBlock(), createElementBlock("div", _hoisted_1$2, [
@@ -82,7 +92,7 @@ const _sfc_main$2 = {
     };
   }
 };
-const LayoutSider = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-60075187"]]);
+const LayoutSider = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-32d7647a"]]);
 const avatar = "/wsg-admin/assets/avatar-DNWYG7hT.png";
 const initialState = {
   locale: "zh"
@@ -195,21 +205,19 @@ function registerQiankunApps() {
   registerMicroApps([
     {
       name: "vueApp",
-      entry: "//big-wang007.github.io/vue-app/",
+      entry: "//localhost:8081",
       container: "#container",
-      activeRule: (location) => location.hash.startsWith("#/vue-app"),
+      activeRule: (location) => {
+        const active = location.hash.startsWith("#/vue-app");
+        console.log("乾坤activeRule匹配：", location, active);
+        return "#/vue-app";
+      },
       props: {
         // 传递basePath，注意：这里应该传递hash路由的base路径，即#号后面的部分的前缀
-        basePath: "/vue-app"
+        basePath: "/vue-app/"
         // 注意：以斜杠开头，没有#号
       }
     }
-    // {
-    //   name: "reactApp",
-    //   entry: "//localhost:8082",
-    //   container: "#container",
-    //   activeRule: "/react-app",
-    // },
   ]);
   start({
     sandbox: { experimentalStyleIsolation: true },
@@ -258,4 +266,4 @@ const layout = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-5a9
 export {
   layout as default
 };
-//# sourceMappingURL=layout-DbMUwMT5.js.map
+//# sourceMappingURL=layout-DytZK7_g.js.map

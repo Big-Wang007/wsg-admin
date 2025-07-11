@@ -316,6 +316,11 @@ function effectScope(detached) {
 function getCurrentScope() {
   return activeEffectScope;
 }
+function onScopeDispose(fn, failSilently = false) {
+  if (activeEffectScope) {
+    activeEffectScope.cleanups.push(fn);
+  }
+}
 let activeSub;
 const pausedQueueEffects = /* @__PURE__ */ new WeakSet();
 class ReactiveEffect {
@@ -3033,6 +3038,52 @@ function resolveAsset(type, name, warnMissing = true, maybeSelfReference = false
 function resolve(registry, name) {
   return registry && (registry[name] || registry[camelize(name)] || registry[capitalize(camelize(name))]);
 }
+function renderList(source, renderItem, cache, index) {
+  let ret;
+  const cached = cache;
+  const sourceIsArray = isArray(source);
+  if (sourceIsArray || isString(source)) {
+    const sourceIsReactiveArray = sourceIsArray && isReactive(source);
+    let needsWrap = false;
+    let isReadonlySource = false;
+    if (sourceIsReactiveArray) {
+      needsWrap = !isShallow(source);
+      isReadonlySource = isReadonly(source);
+      source = shallowReadArray(source);
+    }
+    ret = new Array(source.length);
+    for (let i = 0, l = source.length; i < l; i++) {
+      ret[i] = renderItem(
+        needsWrap ? isReadonlySource ? toReadonly(toReactive(source[i])) : toReactive(source[i]) : source[i],
+        i,
+        void 0,
+        cached
+      );
+    }
+  } else if (typeof source === "number") {
+    ret = new Array(source);
+    for (let i = 0; i < source; i++) {
+      ret[i] = renderItem(i + 1, i, void 0, cached);
+    }
+  } else if (isObject(source)) {
+    if (source[Symbol.iterator]) {
+      ret = Array.from(
+        source,
+        (item, i) => renderItem(item, i, void 0, cached)
+      );
+    } else {
+      const keys = Object.keys(source);
+      ret = new Array(keys.length);
+      for (let i = 0, l = keys.length; i < l; i++) {
+        const key = keys[i];
+        ret[i] = renderItem(source[key], key, i, cached);
+      }
+    }
+  } else {
+    ret = [];
+  }
+  return ret;
+}
 const getPublicInstance = (i) => {
   if (!i) return null;
   if (isStatefulComponent(i)) return getComponentPublicInstance(i);
@@ -3161,6 +3212,13 @@ const PublicInstanceProxyHandlers = {
     return Reflect.defineProperty(target, key, descriptor);
   }
 };
+function useAttrs() {
+  return getContext().attrs;
+}
+function getContext() {
+  const i = getCurrentInstance();
+  return i.setupContext || (i.setupContext = createSetupContext(i));
+}
 function normalizePropsOrEmits(props) {
   return isArray(props) ? props.reduce(
     (normalized, p2) => (normalized[p2] = null, normalized),
@@ -7321,28 +7379,34 @@ function normalizeContainer(container) {
   return container;
 }
 export {
+  renderList as $,
   withModifiers as A,
   onBeforeMount as B,
   Comment as C,
   Teleport as D,
-  render as E,
+  toRaw as E,
   Fragment as F,
-  toRaw as G,
-  TransitionGroup as H,
-  effectScope as I,
-  markRaw as J,
-  isRef as K,
-  shallowReactive as L,
-  createBlock as M,
-  resolveComponent as N,
-  openBlock as O,
-  withCtx as P,
-  createApp as Q,
-  createElementBlock as R,
-  createBaseVNode as S,
+  render as G,
+  useAttrs as H,
+  createTextVNode as I,
+  onBeforeUpdate as J,
+  getCurrentScope as K,
+  onScopeDispose as L,
+  TransitionGroup as M,
+  effectScope as N,
+  markRaw as O,
+  isRef as P,
+  shallowReactive as Q,
+  createBlock as R,
+  resolveComponent as S,
   Text as T,
-  toDisplayString as U,
-  createTextVNode as V,
+  openBlock as U,
+  withCtx as V,
+  createElementBlock as W,
+  createBaseVNode as X,
+  normalizeStyle as Y,
+  createApp as Z,
+  toDisplayString as _,
   reactive as a,
   isVNode as b,
   createVNode as c,
@@ -7370,4 +7434,4 @@ export {
   toRef as y,
   vShow as z
 };
-//# sourceMappingURL=@vue-CXFRJBEB.js.map
+//# sourceMappingURL=@vue-D-mnPpXN.js.map
