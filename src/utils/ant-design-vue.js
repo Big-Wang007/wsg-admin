@@ -15,6 +15,10 @@ import {
   // ConfigProvider,
   Dropdown,
   Avatar,
+  Statistic,
+  Progress,
+  Tabs,
+  RangePicker,
 } from "ant-design-vue";
 
 export default function installAntd(app) {
@@ -33,6 +37,10 @@ export default function installAntd(app) {
   // app.use(ConfigProvider);
   app.use(Dropdown);
   app.use(Avatar);
+  app.use(Statistic);
+  app.use(Progress);
+  app.use(Tabs);
+  app.use(RangePicker);
   // message.config({
   //   top: `100px`,
   //   duration: 2,

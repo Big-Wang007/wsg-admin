@@ -16,14 +16,16 @@ const I18n = setupI18n();
 initI18n(I18n);
 
 // 使用svg
-// import 'virtual:svg-icons-register'
-// import SvgIcon from './utils/svgIcon/index.vue'
+import 'virtual:svg-icons-register'
+import SvgIcon from './utils/svgIcon/index.vue'
+
+import "@/api/mock/list.js";
 
 const app = createApp(App);
 installAntd(app);
 app.use(createPinia());
 app.use(router);
 app.use(I18n);
-// app.component('svg-icon', SvgIcon)
+app.component('svg-icon', SvgIcon)
 
 app.mount("#app");

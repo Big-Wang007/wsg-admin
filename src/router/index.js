@@ -15,12 +15,26 @@ const router = createRouter({
           name: "home",
           component: () => import("@/views/home/index.vue"),
         },
-        // 微应用路由配置
+        // vue微应用路由配置
         {
           path: "vue-app",
           name: "vueAppContainer",
           component: () => import("@/components/microApp.vue"),
-          meta: { title: "微应用容器" },
+          meta: { title: "vue微应用容器" },
+          children: [
+            // 捕获所有微应用子路由
+            {
+              path: ":pathMatch(.*)*",
+              component: () => import("@/components/microApp.vue"),
+            },
+          ],
+        },
+        // react微应用路由配置
+        {
+          path: "react-app",
+          name: "reactAppContainer",
+          component: () => import("@/components/microApp.vue"),
+          meta: { title: "react微应用容器" },
           children: [
             // 捕获所有微应用子路由
             {
