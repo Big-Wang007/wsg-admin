@@ -1,9 +1,10 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, /* createWebHistory, */ createWebHashHistory } from "vue-router";
 
 const router = createRouter({
   // 这里的import.meta.env.BASE_URL取值于vite.config.js中的base属性。
   // 只有在生产环境才需要加/h5/前缀访问。
-  history: createWebHistory(import.meta.env.BASE_URL),
+  // history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(),
   routes: [
     {
       path: "/",
@@ -14,6 +15,23 @@ const router = createRouter({
           path: "home",
           name: "home",
           component: () => import("@/views/home/index.vue"),
+        },
+        {
+          path: "power-list-one",
+          name: "powerListOne",
+          component: () => import("@/views/powerListOne/index.vue"),
+          children: [
+            {
+              path: "virtual-scroll",
+              name: "virtualScroll",
+              component: () => import("@/views/powerListOne/virtualScroll.vue"),
+            },
+            {
+              path: "compression-and-clip",
+              name: "compressionAndClip",
+              component: () => import("@/views/powerListOne/compressionAndClip.vue"),
+            },
+          ],
         },
         // vue微应用路由配置
         {

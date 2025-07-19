@@ -149,7 +149,7 @@ export const homeData = {
       "y": 863,
     },
   ],
-  "visitData": [
+  "visitData3": [
     {
       "x": "1月",
       "y": 408,

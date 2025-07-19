@@ -42,6 +42,7 @@ onMounted(() => {
     background-color: #fff;
   }
   &-content {
+    min-height: calc(100vh - 72px);
     grid-area: content;
     &-wrapper {
       height: calc(100% - 64px);

@@ -7,7 +7,7 @@ import {
   // Form,
   // Input,
   // message,
-  // Table,
+  Table,
   // DatePicker,
   // Select,
   // Row,
@@ -19,6 +19,10 @@ import {
   Progress,
   Tabs,
   RangePicker,
+  Card,
+  Segmented,
+  Upload,
+  Space,
 } from "ant-design-vue";
 
 export default function installAntd(app) {
@@ -29,7 +33,7 @@ export default function installAntd(app) {
   // app.use(Menu);
   // app.use(Form);
   // app.use(Input);
-  // app.use(Table);
+  app.use(Table);
   // app.use(DatePicker);
   // app.use(Select);
   // app.use(Row);
@@ -41,6 +45,10 @@ export default function installAntd(app) {
   app.use(Progress);
   app.use(Tabs);
   app.use(RangePicker);
+  app.use(Card);
+  app.use(Segmented);
+  app.use(Upload);
+  app.use(Space);
   // message.config({
   //   top: `100px`,
   //   duration: 2,

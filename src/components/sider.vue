@@ -31,9 +31,9 @@ function getItem(label, key, icon, children, type) {
 }
 const items = reactive([
   getItem("首页", "home", () => h(HomeOutlined)),
-  getItem("主应用", "admin", () => h(MailOutlined), [
-    getItem("Option 1", "1"),
-    getItem("Option 2", "2"),
+  getItem("功能列表1", "power-list-one", () => h(MailOutlined), [
+    getItem("虚拟滚动", "virtual-scroll"),
+    getItem("图片压缩和裁剪", "compression-and-clip"),
     getItem("Option 3", "3"),
     getItem("Option 4", "4"),
   ]),
@@ -42,7 +42,7 @@ const items = reactive([
     getItem(t("menu.dashboard"), "dashboard"),
     getItem(t("menu.details"), "details"),
   ]),
-  getItem("react微应用", "react", () => h(SettingOutlined), [
+  getItem("react微应用", "react-app", () => h(SettingOutlined), [
     getItem("Option 9", "9"),
     getItem("Option 10", "10"),
     getItem("Option 11", "11"),
@@ -50,8 +50,8 @@ const items = reactive([
   ]),
 ]);
 const state = reactive({
-  openKeys: ["admin", "vue-app", "react"],
-  selectedKeys: ["home"],
+  openKeys: ["power-list-one", "vue-app", "react-app"],
+  selectedKeys: [],
 });
 
 const router = useRouter();
@@ -78,6 +78,7 @@ watch(
 
 <style lang="less" scoped>
 .sider-content {
+  position: fixed;
   width: 240px;
   height: 100%;
 }

@@ -173,13 +173,63 @@
         </a-tab-pane>
       </a-tabs>
     </div>
+    <div style="display: flex; margin: 24px -12px 0">
+      <div style="flex: 0 0 50%; padding: 0 12px">
+        <a-card title="线上热门搜索">
+          <div>
+            <div style="display: flex">
+              <div style="width: 100%">
+                <span class="acss-cpntvi">
+                  <span>搜索用户数</span>
+                  <ExclamationCircleOutlined />
+                </span>
+                <span class="acss-tqwuha">
+                  <span>17.1</span>
+                  <svg-icon icon-class="up-red" style="color: #ff4c4c"></svg-icon>
+                </span>
+                <div id="search-user-main"></div>
+              </div>
+              <div style="width: 100%">
+                <span class="acss-cpntvi">
+                  <span>人均搜索次数</span>
+                  <ExclamationCircleOutlined />
+                </span>
+                <span class="acss-tqwuha">
+                  <span>21.5</span>
+                  <svg-icon icon-class="down-green" style="color: #52c41a"></svg-icon>
+                </span>
+                <div id="search-number-main"></div>
+              </div>
+            </div>
+            <div style="margin-top: 16px">
+              <a-table :data-source="searchData" :pagination="{ defaultPageSize: 5 }">
+                <a-table-column key="index" title="排名" data-index="index"></a-table-column>
+                <a-table-column key="keyword" title="搜索关键词" data-index="keyword"></a-table-column>
+                <a-table-column key="count" title="用户数" data-index="count"></a-table-column>
+                <a-table-column key="range" title="周涨幅" data-index="range"></a-table-column>
+              </a-table>
+            </div>
+          </div>
+        </a-card>
+      </div>
+      <div style="flex: 0 0 50%; padding: 0 12px">
+        <a-card title="销售额类别占比">
+          <template #extra
+            ><a href="#">
+              <a-segmented v-model:value="segmentedValue" :options="segmentedData" @change="changeSegmented" /> </a
+          ></template>
+          <div id="sales-proportion-main"></div>
+        </a-card>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
 import axios from "axios";
 import echarts from "@/utils/echarts";
-import { nextTick, onMounted, reactive, ref } from "vue";
+import { nextTick, reactive, ref } from "vue";
+import { Segmented, Card, Table } from "ant-design-vue";
 import { ExclamationCircleOutlined } from "@ant-design/icons-vue";
 import dayjs from "dayjs";
 
@@ -358,6 +408,7 @@ function initVisitVolume(salesData) {
 }
 
 const homeData = ref();
+const searchData = ref([]);
 const tabRadioDate = ref("day");
 const dateTime = ref([dayjs(), dayjs()]);
 
@@ -380,9 +431,15 @@ function init() {
     const { code, data } = res.data;
     if (code === 200) {
       homeData.value = data;
+      searchData.value = data.searchData;
+
       initLineChart(homeData.value.visitData);
       initBarChart(homeData.value.visitData);
       initSalesVolume(homeData.value.salesData);
+
+      initSearchUser();
+      initSearchNumber();
+      initPieChart(homeData.value.salesTypeData);
       console.log(data);
     }
   });
@@ -395,7 +452,7 @@ function changeTab(key) {
     initSalesVolume(homeData.value.salesData);
   } else {
     nextTick(() => {
-      initVisitVolume(homeData.value.visitData);
+      initVisitVolume(homeData.value.visitData3);
     });
   }
 }
@@ -409,6 +466,182 @@ const salesRanking = reactive([
   { rank: 6, name: "莲花大道6号门店", valume: "444,999" },
   { rank: 7, name: "莲花大道7号门店", valume: "333,999" },
 ]);
+
+function initSearchUser() {
+  const list = [
+    ["2025-07-07", 1],
+    ["2025-07-08", 6],
+    ["2025-07-09", 4],
+    ["2025-07-10", 8],
+    ["2025-07-11", 3],
+    ["2025-07-12", 7],
+    ["2025-07-13", 2],
+  ];
+  const barChartDom = document.getElementById("search-user-main");
+  const barChart = echarts.init(barChartDom);
+  const barChartOption = {
+    xAxis: {
+      type: "category",
+      axisLine: {
+        show: true,
+      },
+      splitLine: {
+        show: false, // 不显示分割线（即网格线）
+      },
+    },
+    yAxis: {
+      type: "value",
+      splitLine: {
+        show: false, // 不显示分割线（即网格线）
+      },
+    },
+    grid: {
+      top: 5,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+    tooltip: {
+      trigger: "axis",
+    },
+    series: [
+      {
+        data: [...list],
+        type: "line",
+        smooth: true,
+        areaStyle: {},
+        symbol: "none",
+      },
+    ],
+  };
+  barChart.setOption(barChartOption);
+}
+
+function initSearchNumber() {
+  const list = [
+    ["2025-07-07", 12],
+    ["2025-07-08", 32],
+    ["2025-07-09", 22],
+    ["2025-07-10", 52],
+    ["2025-07-11", 12],
+    ["2025-07-12", 32],
+    ["2025-07-13", 12],
+  ];
+  const barChartDom = document.getElementById("search-number-main");
+  const barChart = echarts.init(barChartDom);
+  const barChartOption = {
+    xAxis: {
+      type: "category",
+      axisLine: {
+        show: true,
+      },
+      splitLine: {
+        show: false, // 不显示分割线（即网格线）
+      },
+    },
+    yAxis: {
+      type: "value",
+      splitLine: {
+        show: false, // 不显示分割线（即网格线）
+      },
+    },
+    grid: {
+      top: 5,
+      right: 0,
+      bottom: 0,
+      left: 0,
+    },
+    tooltip: {
+      trigger: "axis",
+    },
+    series: [
+      {
+        data: [...list],
+        type: "line",
+        smooth: true,
+        areaStyle: {},
+        symbol: "none",
+      },
+    ],
+  };
+  barChart.setOption(barChartOption);
+}
+
+const segmentedValue = ref("all");
+const segmentedData = reactive([
+  { value: "all", label: "全部渠道" },
+  { value: "online", label: "线上" },
+  { value: "store", label: "门店" },
+]);
+function initPieChart(data) {
+  const list = [];
+  data.forEach(val => {
+    // const arr = [];
+    // arr.push(val.x);
+    // arr.push(val.y);
+    list.push({ name: val.x, value: val.y });
+  });
+  const pieChartDom = document.getElementById("sales-proportion-main");
+  const pieChart = echarts.init(pieChartDom);
+  const pieChartOption = {
+    tooltip: {
+      trigger: "item",
+    },
+    legend: {
+      top: "5%",
+      left: "center",
+    },
+    grid: {
+      top: 60,
+    },
+    series: [
+      {
+        name: "品类",
+        type: "pie",
+        radius: ["40%", "70%"],
+        avoidLabelOverlap: false,
+        itemStyle: {
+          borderRadius: 10,
+          borderColor: "#fff",
+          borderWidth: 2,
+        },
+        label: {
+          show: false,
+          position: "center",
+        },
+        emphasis: {
+          label: {
+            show: true,
+            fontSize: 24,
+            fontWeight: "bold",
+          },
+        },
+        labelLine: {
+          show: false,
+        },
+        data: [
+          ...list,
+          // { value: 1048, name: "Search Engine" },
+          // { value: 735, name: "Direct" },
+          // { value: 580, name: "Email" },
+          // { value: 484, name: "Union Ads" },
+          // { value: 300, name: "Video Ads" },
+        ],
+      },
+    ],
+  };
+  pieChart.setOption(pieChartOption);
+}
+
+function changeSegmented(key) {
+  initPieChart(
+    key === "all"
+      ? homeData.value.salesTypeData
+      : key === "online"
+        ? homeData.value.salesTypeDataOffline
+        : homeData.value.salesTypeDataOnline,
+  );
+}
 </script>
 
 <style lang="less" scoped>
@@ -519,5 +752,38 @@ const salesRanking = reactive([
       }
     }
   }
+}
+
+#search-user-main,
+#search-number-main {
+  width: 100%;
+  height: 45px;
+}
+
+.acss-cpntvi {
+  height: 22px;
+  overflow: hidden;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  line-height: 22px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}
+.acss-tqwuha {
+  margin-top: 8px;
+  overflow: hidden;
+  font-size: 16px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  display: block;
+  line-height: 16px;
+  font-weight: 600;
+}
+
+#sales-proportion-main {
+  width: 100%;
+  height: 500px;
 }
 </style>
