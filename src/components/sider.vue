@@ -34,8 +34,9 @@ const items = reactive([
   getItem("功能列表1", "power-list-one", () => h(MailOutlined), [
     getItem("虚拟滚动", "virtual-scroll"),
     getItem("图片压缩和裁剪", "compression-and-clip"),
-    getItem("Option 3", "3"),
-    getItem("Option 4", "4"),
+    getItem("拖拽排序", "draggable-sorting"),
+    getItem("表单校验", "form-validation"),
+    getItem("表格", "table"),
   ]),
   getItem(t("menu.vueMircoApp"), "vue-app", () => h(AppstoreOutlined), [
     getItem(t("menu.list"), "list"),

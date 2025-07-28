@@ -1,4 +1,4 @@
-import { nextTick } from "vue";
+import { nextTick, Ref } from "vue";
 import { createI18n, type I18nOptions, type I18n } from "vue-i18n";
 
 const options: I18nOptions = {
@@ -15,11 +15,7 @@ export function setupI18n() {
 }
 
 export function setI18nLanguage(i18n: I18n, locale: string) {
-  if ("mode" in i18n && i18n.mode === "legacy") {
-    i18n.global.locale = locale;
-  } else {
-    i18n.global.locale.value = locale;
-  }
+  (i18n.global.locale as Ref<string>).value = locale;
   document.querySelector("html")?.setAttribute("lang", locale);
 }
 

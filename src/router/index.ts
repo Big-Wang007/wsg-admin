@@ -31,6 +31,21 @@ const router = createRouter({
               name: "compressionAndClip",
               component: () => import("@/views/powerListOne/compressionAndClip.vue"),
             },
+            {
+              path: "draggable-sorting",
+              name: "draggableSorting",
+              component: () => import("@/views/powerListOne/draggableSorting.vue"),
+            },
+            {
+              path: "form-validation",
+              name: "formValidation",
+              component: () => import("@/views/powerListOne/formValidation.vue"),
+            },
+            {
+              path: "table",
+              name: "table",
+              component: () => import("@/views/powerListOne/table.vue"),
+            },
           ],
         },
         // vue微应用路由配置
