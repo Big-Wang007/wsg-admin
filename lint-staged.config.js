@@ -1,6 +1,9 @@
 export default {
-  "*.js?(x)": ["eslint --fix", "prettier --write"],
-  "*.ts?(x)": ["eslint --fix", "prettier --write"],
-  "*.vue": ["eslint --fix", "prettier --write"],
-  "*.{json,html,css,md}": ["prettier --write"],
+  // JS / TS / Vue 先 ESLint 再 Prettier
+  "**/*.{js,jsx,mjs,ts,tsx,mts,cts,vue}": filenames => [
+    `eslint --fix ${filenames.join(" ")}`,
+    `prettier --write ${filenames.join(" ")}`,
+  ],
+  // 其余走 Prettier
+  "**/*.{json,html,css,md}": "prettier --write",
 };

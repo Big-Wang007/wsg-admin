@@ -3,7 +3,14 @@ export default {
   extends: ["@commitlint/config-conventional"],
   // @see: https://commitlint.js.org/#/reference-rules
   rules: {
-    "subject-case": [2, "always", "lower-case"], // subject大小写校验
+    // subject大小写校验
+    "subject-case": [2, "always", "lower-case"],
+    // 长度
+    "header-max-length": [2, "always", 72],
+    // scope、body、footer 约束
+    "scope-empty": [0, "never"],
+    "body-leading-blank": [2, "always"],
+    "body-max-line-length": [2, "always", 100],
     // 类型枚举，git提交type必须是以下类型
     "type-enum": [
       2,

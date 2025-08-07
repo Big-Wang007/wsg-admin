@@ -4,9 +4,15 @@
   "useTabs": false,
   "singleQuote": false,
   "semi": true,
-  "trailingComma": "all",
+  "trailingComma": "es5",
   "arrowParens": "avoid",
   "bracketSpacing": true,
-  "endOfLine": "auto",
-  "quoteProps": "preserve"
+  "endOfLine": "lf",
+  "quoteProps": "as-needed",
+  "overrides": [
+    {
+      "files": "*.vue",
+      "options": { "printWidth": 100 }
+    }
+  ]
 }
